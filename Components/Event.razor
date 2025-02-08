@@ -1,0 +1,14 @@
+
+
+@code
+{
+    [Parameter] required public string Title { get; set; }
+    [Parameter] required public DateTime StartDate { get; set; }
+    [Parameter] public DateTime? EndDate { get; set; }
+    [Parameter] required public string LocationName { get; set; }
+    [Parameter] public string? LocationURL { get; set; }
+    [Parameter] required public string LocationAddress { get; set; }
+    [Parameter] required public string Cost { get; set; }
+    [Parameter] required public RenderFragment ChildContent { get; set; }
+    [Parameter] public string? MainImageUrl { get; set; }
+}

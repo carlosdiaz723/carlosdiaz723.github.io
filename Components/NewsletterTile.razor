@@ -1,0 +1,21 @@
+@inject NavigationManager NavigationManager
+
+<div class="container" @onclick="NavigateToNewsletter">
+    <img src="@ImageUrl" alt="@Title preview image" class="preview-image" />
+    <div class="preview-content">
+        <h3 class="preview-title">@Title</h3>
+        <p class="preview-text">@Description</p>
+    </div>
+</div>
+
+@code {
+    [Parameter] required public string Title { get; set; }
+    [Parameter] required public string Description { get; set; }
+    [Parameter] required public string ImageUrl { get; set; }
+    [Parameter] required public string LinkUrl { get; set; }
+
+    private void NavigateToNewsletter()
+    {
+        NavigationManager.NavigateTo(LinkUrl);
+    }
+}
