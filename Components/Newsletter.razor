@@ -1,8 +1,24 @@
-<div class="main-stack">
-    <img src="images/MainBannerLogo.png"/>
-</div>
+@page "/newsletters/2025/april"
 
-@code
-{
-    [Parameter] public List<Event>? Events { get; set; }
-}
+<div class="main-stack">
+    <img class="logo-banner" src="images/MainBannerLogo.png"/>
+    <div class="date">
+        <h3>April 2025</h3>
+    </div>
+    <div class="Events-banner">
+        <h1>Events</h1>
+    </div>
+    <Event
+        Title="Caffeine and Octane"
+        LocationAddress="400 Ernest W Barrett Pkwy NW, Kennesaw, GA 30144"
+        LocationName="Town Center at Cobb"
+        LocationURL="https://maps.app.goo.gl/TzfwsBvUf1KaFQiu8"
+        StartDate="new DateTime(2025, 4, 6, 7, 0, 0)"
+        EndDate="new DateTime(2025, 4, 6, 12, 0, 0)"
+        Cost="Free"
+        MainImageUrl="images/caffeine and octane.jpg"
+    >
+        The usual C&O meetup. Meet us at the spectator lot at around 7:00 AM to park together. 
+        Otherwise, come whenever, park wherever, and enjoy the show as a spectator. 
+    </Event>
+</div>

@@ -1,4 +1,46 @@
-
+<div class="highlights">
+    <div class="title">
+        <h2>@Title</h2>
+    </div>
+    <div class="dates">
+        @if (EndDate.HasValue && StartDate.Date == EndDate.Value.Date)
+        {
+            <div>
+                WHEN:
+            </div>
+            <div>
+                @StartAndEndSameDay().Split("/")[0]
+                <br/>
+                @StartAndEndSameDay().Split("/")[1]
+            </div>
+        }
+        else if (EndDate.HasValue)
+        {
+            <div>
+                FROM:
+            </div>
+            <div>
+                @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
+            </div>
+            <div>
+                UNTIL:
+            </div>
+            <div>
+                @($"{EndDate.Value.Day}{GetDaySuffix(EndDate.Value.Day)} of {EndDate.Value.ToString("MMMM, h:mm tt")}")
+            </div>
+        }
+        else
+        {
+            @* just a start time *@
+            <div>
+                WHEN:
+            </div>
+            <div>
+                @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
+            </div>
+        }
+    </div>
+</div>
 
 @code
 {
@@ -11,4 +53,27 @@
     [Parameter] required public string Cost { get; set; }
     [Parameter] required public RenderFragment ChildContent { get; set; }
     [Parameter] public string? MainImageUrl { get; set; }
+
+
+    public string StartAndEndSameDay()
+    {
+        string day = StartDate.Day.ToString();
+        string suffix = GetDaySuffix(StartDate.Day);
+        
+        string result = StartDate.ToString("MMMM ") + day + suffix + StartDate.ToString(", yyyy / h:mm tt");
+        result += " - " + EndDate.Value.ToString("h:mm tt");
+        return result;
+    }
+    public static string GetDaySuffix(int day)
+    {
+        if (day >= 11 && day <= 13) return "th";
+        
+        switch (day % 10)
+        {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    }
 }
