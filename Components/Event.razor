@@ -8,10 +8,10 @@
             <div class="highlight">
                 @if (EndDate.HasValue && StartDate.Date == EndDate.Value.Date)
                 {
-                    <div class="highlight-label">
+                    <div class="label">
                         WHEN:
                     </div>
-                    <div>
+                    <div class="value">
                         @StartAndEndSameDay().Split("/")[0]
                         <br/>
                         @StartAndEndSameDay().Split("/")[1]
@@ -19,45 +19,47 @@
                 }
                 else if (EndDate.HasValue)
                 {
-                    <div class="highlight-label">
+                    <div class="label">
                         FROM:
                     </div>
-                    <div>
+                    <div class="value">
                         @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
                     </div>
-                    <div class="highlight-label">
+                    <div class="label">
                         UNTIL:
                     </div>
-                    <div>
+                    <div class="value">
                         @($"{EndDate.Value.Day}{GetDaySuffix(EndDate.Value.Day)} of {EndDate.Value.ToString("MMMM, h:mm tt")}")
                     </div>
                 }
                 else
                 {
                     @* just a start time *@
-                    <div class="highlight-label">
+                    <div class="label">
                         WHEN:
                     </div>
-                    <div>
+                    <div class="value">
                         @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
                     </div>
                 }
             </div>
             <div class="highlight">
-                <div class="highlight-label">
+                <div class="label">
                     WHERE:
                 </div>
-                <div>
+                <div class="value">
                     <a href="@LocationURL">@LocationName</a>
                     <br/>
-                    @LocationAddress
+                    @AddressLine1
+                    <br/>
+                    @AddressLine2
                 </div>
             </div>
             <div class="highlight">
-                <div class="highlight-label">
+                <div class="label">
                     COST:
                 </div>
-                <div class="cost-value">
+                <div class="value cost">
                     @Cost
                 </div>
             </div>
@@ -91,7 +93,8 @@
     [Parameter] public DateTime? EndDate { get; set; }
     [Parameter] required public string LocationName { get; set; }
     [Parameter] public string? LocationURL { get; set; }
-    [Parameter] required public string LocationAddress { get; set; }
+    [Parameter] required public string AddressLine1 { get; set; }
+    [Parameter] required public string AddressLine2 { get; set; }
     [Parameter] required public string Cost { get; set; }
     [Parameter] required public RenderFragment ChildContent { get; set; }
     [Parameter] public string? MainImageUrl { get; set; }
