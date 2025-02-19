@@ -3,7 +3,7 @@
     height: 100%;
 }
 
-::deep .events-banner {
+::deep .section-title {
     color: #333;
     background-color: chartreuse;
 }
