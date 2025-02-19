@@ -1,10 +1,10 @@
-<div class="main-stack">
+<div class="newsletter">
     <img class="logo-banner" src="images/MainBannerLogo.png"/>
     <div class="date">
-        <h3>April 2025</h3>
+        @Month @Year
     </div>
-    <div class="Events-banner">
-        <h1>Events</h1>
+    <div class="events-banner">
+        Events
     </div>
     <Event
         Title="Caffeine and Octane"
@@ -22,5 +22,6 @@
 </div>
 
 @code {
-    
+    [Parameter] required public int Year { get; set; }
+    [Parameter] required public string Month { get; set; }
 }
