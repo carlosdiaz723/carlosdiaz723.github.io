@@ -1,46 +1,88 @@
-<div class="highlights">
+
+<div class="event">
     <div class="title">
-        <h2>@Title</h2>
+        @Title
     </div>
-    <div class="dates">
-        @if (EndDate.HasValue && StartDate.Date == EndDate.Value.Date)
+    <div class="highlights">
+        <div class="left">
+            <div class="highlight">
+                @if (EndDate.HasValue && StartDate.Date == EndDate.Value.Date)
+                {
+                    <div class="highlight-label">
+                        WHEN:
+                    </div>
+                    <div>
+                        @StartAndEndSameDay().Split("/")[0]
+                        <br/>
+                        @StartAndEndSameDay().Split("/")[1]
+                    </div>
+                }
+                else if (EndDate.HasValue)
+                {
+                    <div class="highlight-label">
+                        FROM:
+                    </div>
+                    <div>
+                        @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
+                    </div>
+                    <div class="highlight-label">
+                        UNTIL:
+                    </div>
+                    <div>
+                        @($"{EndDate.Value.Day}{GetDaySuffix(EndDate.Value.Day)} of {EndDate.Value.ToString("MMMM, h:mm tt")}")
+                    </div>
+                }
+                else
+                {
+                    @* just a start time *@
+                    <div class="highlight-label">
+                        WHEN:
+                    </div>
+                    <div>
+                        @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
+                    </div>
+                }
+            </div>
+            <div class="highlight">
+                <div class="highlight-label">
+                    WHERE:
+                </div>
+                <div>
+                    <a href="@LocationURL">@LocationName</a>
+                    <br/>
+                    @LocationAddress
+                </div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-label">
+                    COST:
+                </div>
+                <div class="cost-value">
+                    @Cost
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <img class="main-event-image" src="@MainImageUrl"/>
+        </div>
+    </div>
+    <div class="details">
+        @ChildContent
+    </div>
+    <div class="links">
+        @if(!string.IsNullOrWhiteSpace(FacebookEventUrl))
         {
-            <div>
-                WHEN:
-            </div>
-            <div>
-                @StartAndEndSameDay().Split("/")[0]
-                <br/>
-                @StartAndEndSameDay().Split("/")[1]
-            </div>
+            <a class="link" href="@FacebookEventUrl">Facebook Event</a>
         }
-        else if (EndDate.HasValue)
+        @if(OtherLinks != null)
         {
-            <div>
-                FROM:
-            </div>
-            <div>
-                @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
-            </div>
-            <div>
-                UNTIL:
-            </div>
-            <div>
-                @($"{EndDate.Value.Day}{GetDaySuffix(EndDate.Value.Day)} of {EndDate.Value.ToString("MMMM, h:mm tt")}")
-            </div>
-        }
-        else
-        {
-            @* just a start time *@
-            <div>
-                WHEN:
-            </div>
-            <div>
-                @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
-            </div>
+            foreach (var link in OtherLinks)
+            {
+                <a class="link" href="@link.Value">@link.Key</a>
+            }
         }
     </div>
-</div>
+</div
 
 @code
 {
@@ -53,6 +95,9 @@
     [Parameter] required public string Cost { get; set; }
     [Parameter] required public RenderFragment ChildContent { get; set; }
     [Parameter] public string? MainImageUrl { get; set; }
+    [Parameter] public string? FacebookEventUrl { get; set; }
+
+    [Parameter] public Dictionary<string, string> OtherLinks { get; set; }
 
 
     public string StartAndEndSameDay()

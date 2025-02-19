@@ -1,10 +1,33 @@
 .newsletter-container {
     width: 100%;
     height: 100%;
+    padding: 20px;
+}
+::deep .newsletter{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+::deep .logo-and-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+::deep .banner-logo {
+    width: 25vw;
+}
+
+::deep .date {
+    font-size: smaller;
 }
 
 ::deep .section-title {
-    color: #333;
-    background-color: chartreuse;
+    font-size: x-large;
 }
 
