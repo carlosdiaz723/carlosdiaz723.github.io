@@ -61,7 +61,12 @@
         string suffix = GetDaySuffix(StartDate.Day);
         
         string result = StartDate.ToString("MMMM ") + day + suffix + StartDate.ToString(", yyyy / h:mm tt");
-        result += " - " + EndDate.Value.ToString("h:mm tt");
+        
+        if (EndDate.HasValue)
+        {
+            result += " - " + EndDate.Value.ToString("h:mm tt");
+        }
+        
         return result;
     }
     public static string GetDaySuffix(int day)
