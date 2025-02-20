@@ -9,7 +9,7 @@
 }
 
 .title {
-    font-size: larger;
+    font-size: x-large;
 }
 
 .highlights {
@@ -37,10 +37,16 @@
 
 .highlight .label {
     margin-right: auto;
+    font-weight: bold;
 }
 
 .highlight .value {
     text-align: right;
+}
+
+.value.cost {
+    color: lightgreen;
+    font-weight: bold;
 }
 
 .highlights .right {

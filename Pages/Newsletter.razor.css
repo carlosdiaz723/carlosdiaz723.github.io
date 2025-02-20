@@ -17,6 +17,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    gap: 10px;
 }
 
 ::deep .banner-logo {
@@ -24,10 +26,15 @@
 }
 
 ::deep .date {
-    font-size: smaller;
+    font-size: large;
 }
 
 ::deep .section-title {
-    font-size: x-large;
+    font-size: xx-large;
+    text-align: center;
 }
 
+::deep .photo-contest-winner {
+    width: 100vw;
+    padding: 20px;
+}

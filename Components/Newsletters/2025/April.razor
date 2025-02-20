@@ -36,6 +36,13 @@
         Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </Event>
+    @if (!string.IsNullOrWhiteSpace(PhotoContestWinnerUrl))
+    {
+        <div class="section-title">
+            Photo Contest Winner
+        </div>
+        <img class="photo-contest-winner" src="@PhotoContestWinnerUrl"/>
+    }
     <div class="section-title">
         News
     </div>
@@ -51,4 +58,5 @@
 @code {
     [Parameter] required public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
+    [Parameter] public string? PhotoContestWinnerUrl { get; set; } 
 }

@@ -33,7 +33,8 @@
             _parameters = new Dictionary<string, object>
             {
                 { "Year", Year },
-                { "Month", _monthFormatted }
+                { "Month", _monthFormatted },
+                { "PhotoContestWinnerUrl", $"images/PhotoContestWinners/{Year}/{_monthFormatted}.jpg" }
             };
         }
     }
