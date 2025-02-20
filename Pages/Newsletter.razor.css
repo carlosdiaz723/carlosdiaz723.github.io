@@ -2,9 +2,14 @@
     width: 100%;
     height: 100%;
     padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
 ::deep .newsletter{
-    width: 100%;
+    width: 85vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -34,7 +39,14 @@
     text-align: center;
 }
 
-::deep .photo-contest-winner {
-    width: 100vw;
-    padding: 20px;
+::deep .winning-photo-frame {
+    width: 70vw;
+    padding: 3vw;
+    background-color: brown;
+}
+
+::deep .winning-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

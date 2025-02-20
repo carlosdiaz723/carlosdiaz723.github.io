@@ -6,6 +6,7 @@
     gap: 10px;
 
     padding: 20px;
+    width: 100%;
 }
 
 .title {
@@ -55,5 +56,5 @@
 
 
 .main-event-image {
-    max-width: 25vw;
+    max-height: 20vw;
 }
