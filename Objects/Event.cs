@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Components;
 
 public class Event {
     required public string Title { get; set; }

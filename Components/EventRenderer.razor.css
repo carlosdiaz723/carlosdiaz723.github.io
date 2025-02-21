@@ -54,7 +54,12 @@
     margin-left: auto;
 }
 
-
 .main-event-image {
     max-height: 20vw;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
