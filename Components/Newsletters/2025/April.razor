@@ -24,16 +24,18 @@
             <img class="winning-photo" src="@PhotoContestWinnerUrl"/>
         </div>
     }
-    <div class="section-title">
-        News
-    </div>
-    <NewsItem>
-        We are excited to announce that our club has been featured in the local news! 
-        Check out the article <a href="https://example.com/news-article">here</a>.
-    </NewsItem>
-    <NewsItem>
-        April fools! We are not actually in the news. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    </NewsItem>
+    @if (_newsItems.Count > 0)
+    {
+        <div class="section-title">
+            News
+        </div>
+        @foreach (string newsItem in _newsItems)
+        {
+            <div class="news-item" @key="newsItem">
+                @((MarkupString)newsItem)
+            </div>
+        }
+    }
 </div>
 
 @code {
@@ -74,5 +76,17 @@
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             "
         }
+    };
+
+    private List<string> _newsItems { get; set; } = new() {
+        @"
+            We are excited to announce that our club has been featured in the local news!
+            Check out the article <a href='https://example.com/news-article'>here</a>.
+        ",
+        @"
+            April fools! We are not actually in the news. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        "
     };
 }
