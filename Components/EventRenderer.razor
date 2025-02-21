@@ -1,12 +1,12 @@
 
 <div class="event">
     <div class="title">
-        @Title
+        @Event.Title
     </div>
     <div class="highlights">
         <div class="left">
             <div class="highlight">
-                @if (EndDate.HasValue && StartDate.Date == EndDate.Value.Date)
+                @if (Event.EndDate.HasValue && Event.StartDate.Date == Event.EndDate.Value.Date)
                 {
                     <div class="label">
                         WHEN:
@@ -17,19 +17,19 @@
                         @StartAndEndSameDay().Split("/")[1]
                     </div>
                 }
-                else if (EndDate.HasValue)
+                else if (Event.EndDate.HasValue)
                 {
                     <div class="label">
                         FROM:
                     </div>
                     <div class="value">
-                        @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
+                        @($"{Event.StartDate.Day}{GetDaySuffix(Event.StartDate.Day)} of {Event.StartDate.ToString("MMMM, h:mm tt")}")
                     </div>
                     <div class="label">
                         UNTIL:
                     </div>
                     <div class="value">
-                        @($"{EndDate.Value.Day}{GetDaySuffix(EndDate.Value.Day)} of {EndDate.Value.ToString("MMMM, h:mm tt")}")
+                        @($"{Event.EndDate.Value.Day}{GetDaySuffix(Event.EndDate.Value.Day)} of {Event.EndDate.Value.ToString("MMMM, h:mm tt")}")
                     </div>
                 }
                 else
@@ -39,7 +39,7 @@
                         WHEN:
                     </div>
                     <div class="value">
-                        @($"{StartDate.Day}{GetDaySuffix(StartDate.Day)} of {StartDate.ToString("MMMM, h:mm tt")}")
+                        @($"{Event.StartDate.Day}{GetDaySuffix(Event.StartDate.Day)} of {Event.StartDate.ToString("MMMM, h:mm tt")}")
                     </div>
                 }
             </div>
@@ -48,11 +48,11 @@
                     WHERE:
                 </div>
                 <div class="value">
-                    <a href="@LocationURL">@LocationName</a>
+                    <a href="@Event.LocationURL">@Event.LocationName</a>
                     <br/>
-                    @AddressLine1
+                    @Event.AddressLine1
                     <br/>
-                    @AddressLine2
+                    @Event.AddressLine2
                 </div>
             </div>
             <div class="highlight">
@@ -60,25 +60,25 @@
                     COST:
                 </div>
                 <div class="value cost">
-                    @Cost
+                    @Event.Cost
                 </div>
             </div>
         </div>
         <div class="right">
-            <img class="main-event-image" src="@MainImageUrl"/>
+            <img class="main-event-image" src="@Event.MainImageUrl"/>
         </div>
     </div>
     <div class="details">
-        @ChildContent
+        @Event.Description
     </div>
     <div class="links">
-        @if(!string.IsNullOrWhiteSpace(FacebookEventUrl))
+        @if(!string.IsNullOrWhiteSpace(Event.FacebookEventUrl))
         {
-            <a class="link" href="@FacebookEventUrl">Facebook Event</a>
+            <a class="link" href="@Event.FacebookEventUrl">Facebook Event</a>
         }
-        @if(OtherLinks != null)
+        @if(Event.OtherLinks != null)
         {
-            foreach (var link in OtherLinks)
+            foreach (var link in Event.OtherLinks)
             {
                 <a class="link" href="@link.Value">@link.Key</a>
             }
@@ -88,31 +88,18 @@
 
 @code
 {
-    [Parameter] required public string Title { get; set; }
-    [Parameter] required public DateTime StartDate { get; set; }
-    [Parameter] public DateTime? EndDate { get; set; }
-    [Parameter] required public string LocationName { get; set; }
-    [Parameter] public string? LocationURL { get; set; }
-    [Parameter] required public string AddressLine1 { get; set; }
-    [Parameter] required public string AddressLine2 { get; set; }
-    [Parameter] required public string Cost { get; set; }
-    [Parameter] required public RenderFragment ChildContent { get; set; }
-    [Parameter] public string? MainImageUrl { get; set; }
-    [Parameter] public string? FacebookEventUrl { get; set; }
-
-    [Parameter] public Dictionary<string, string> OtherLinks { get; set; }
-
+    [Parameter] required public Event Event { get; set; } 
 
     public string StartAndEndSameDay()
     {
-        string day = StartDate.Day.ToString();
-        string suffix = GetDaySuffix(StartDate.Day);
+        string day = Event.StartDate.Day.ToString();
+        string suffix = GetDaySuffix(Event.StartDate.Day);
         
-        string result = StartDate.ToString("MMMM ") + day + suffix + StartDate.ToString(", yyyy / h:mm tt");
+        string result = Event.StartDate.ToString("MMMM ") + day + suffix + Event.StartDate.ToString(", yyyy / h:mm tt");
         
-        if (EndDate.HasValue)
+        if (Event.EndDate.HasValue)
         {
-            result += " - " + EndDate.Value.ToString("h:mm tt");
+            result += " - " + Event.EndDate.Value.ToString("h:mm tt");
         }
         
         return result;
