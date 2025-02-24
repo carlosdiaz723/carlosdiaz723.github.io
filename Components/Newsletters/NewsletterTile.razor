@@ -1,0 +1,22 @@
+@inject NavigationManager NavigationManager
+
+<div class="container" @onclick="NavigateToNewsletter">
+    <img
+        class="preview-image"
+        src="@PhotoContestWinnerUrl"
+    />
+    <div class="title">
+        @Month @Year
+    </div>
+</div>
+
+@code {
+    [Parameter] required public int Year { get; set; }
+    [Parameter] required public string Month { get; set; }
+    [Parameter] required public string PhotoContestWinnerUrl { get; set; }
+    
+    private void NavigateToNewsletter()
+    {
+        NavigationManager.NavigateTo($"/newsletters/{Year}/{Month}");
+    }
+}

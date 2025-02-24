@@ -11,7 +11,8 @@
     }
     else
     {
-        <p>Newsletter not found for @Month @Year.
+        <p>
+            Newsletter not found for @Month @Year.
         </p>
     }
 </div>
@@ -19,6 +20,7 @@
 @code {
     [Parameter] public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
+    [Parameter] public bool PreviewOnly { get; set; } = false;
     private string _monthFormatted;
 
     private Type? _newsletterComponentType;
@@ -34,7 +36,8 @@
             {
                 { "Year", Year },
                 { "Month", _monthFormatted },
-                { "PhotoContestWinnerUrl", $"images/PhotoContestWinners/{Year}/{_monthFormatted}.jpg" }
+                { "PhotoContestWinnerUrl", $"images/PhotoContestWinners/{Year}/{_monthFormatted}.jpg" },
+                { "PreviewOnly", PreviewOnly }
             };
         }
     }

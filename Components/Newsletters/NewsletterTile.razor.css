@@ -22,17 +22,7 @@
     border-radius: 5px;
 }
 
-.preview-content {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-
-    background-color: white;
-    flex: 1;
-
-    padding: 20px;
-}
-
-.preview-title {
+.title {
     white-space: nowrap;
+    color: black;
 }

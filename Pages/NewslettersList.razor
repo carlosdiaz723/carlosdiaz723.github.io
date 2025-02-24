@@ -1,18 +1,71 @@
 @page "/newsletters"
 
 @using NClubGA.Components
+@using System.Reflection
 
 <PageTitle>Newsletters</PageTitle>
 
 
-@* <NewsletterTile
-    Title="@newsletter.Title"
-    Description="@newsletter.Description"
-    ImageUrl="@newsletter.ImageUrl"
-    LinkUrl="@newsletter.LinkUrl"
-/> *@
+<div class="list">
+    @foreach (var package in Packages)
+    {
+        <Newsletter
+            Year="@package.Year"
+            Month="@package.Month"
+            PreviewOnly="true"
+        />
+    }
+</div>
 
 
 @code {
+    List<NewsletterPackage> Packages = new List<NewsletterPackage>();
+    protected override void OnInitialized()
+    {
+        foreach (var year in years)
+        {
+            var path = $"{NewsletterBaseNamespace}._{year}";
+            foreach (var month in months)
+            {
+                var typeName = $"{path}.{month}";
+                Type? type = Assembly.GetExecutingAssembly().GetType(typeName);
+                if (type is not null)
+                {
+                    var package = new NewsletterPackage
+                    {
+                        Year = year,
+                        Month = month
+                    };
+                    Packages.Add(package);
+                }
+            }
+        }
+    }
 
+    static private string NewsletterBaseNamespace = "NClubGA.Components.Newsletters";
+
+    static private int[] years = new int[] {
+        2025
+    };
+
+    static private string[] months = new string[] {
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December" 
+    };
+
+    public class NewsletterPackage
+    {
+        required public int Year { get; set; }
+        required public string Month { get; set; }
+    }
 }
