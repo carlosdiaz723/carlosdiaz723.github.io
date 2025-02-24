@@ -1,47 +1,21 @@
-<div class="newsletter">
-    <div class="logo-and-date">
-        <img class="banner-logo" src="images/MainBannerLogo.png"/>
-        <div class="date">
-            @Month @Year
-        </div>
-    </div>
-    @if (_events.Count > 0)
-    {
-        <div class="section-title">
-            Events
-        </div>
-        @foreach (Event eventObj in _events)
-        {
-            <EventRenderer Event="@eventObj"/>
-        }
-    }
-    @if (!string.IsNullOrWhiteSpace(PhotoContestWinnerUrl))
-    {
-        <div class="section-title">
-            Photo Contest Winner
-        </div>
-        <div class="winning-photo-frame">
-            <img class="winning-photo" src="@PhotoContestWinnerUrl"/>
-        </div>
-    }
-    @if (_newsItems.Count > 0)
-    {
-        <div class="section-title">
-            News
-        </div>
-        @foreach (string newsItem in _newsItems)
-        {
-            <div class="news-item" @key="newsItem">
-                @((MarkupString)newsItem)
-            </div>
-        }
-    }
-</div>
+<NewsletterBase
+    Year="@Year"
+    Month="@Month"
+    PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
+    Events="_events"
+    NewsItems="_newsItems"
+/>
 
 @code {
-    [Parameter] required public int Year { get; set; }
-    [Parameter] required public string Month { get; set; }
-    [Parameter] public string? PhotoContestWinnerUrl { get; set; }
+    @* Do not edit Year, Month, or PhotoContestWinnerUrl.
+    These are automatically populated by Pages/Newsletter using the name and position in the directory.
+    
+    Year is determined by the folder name, and Month is determined by the file name.
+    PhotoContestWinnerUrl is similarly determined by the folder name it is in and its filename.
+    *@
+    [Parameter] required public int Year { get; set; } // Do not edit
+    [Parameter] required public string Month { get; set; } // Do not edit
+    [Parameter] public string? PhotoContestWinnerUrl { get; set; } // Do not edit
 
     private List<Event> _events { get; set; } = new() {
         new Event

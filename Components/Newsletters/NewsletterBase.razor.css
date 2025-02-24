@@ -1,0 +1,46 @@
+.newsletter{
+    width: 85vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-and-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.banner-logo {
+    width: 25vw;
+}
+
+.date {
+    font-size: large;
+}
+
+.section-title {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.winning-photo-frame {
+    width: 70vw;
+    padding: 3vw;
+    background-color: brown;
+}
+
+.winning-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-item {
+    margin: 20px 0;
+}
