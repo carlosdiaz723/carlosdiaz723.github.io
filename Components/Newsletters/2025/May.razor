@@ -1,0 +1,87 @@
+@if (PreviewOnly)
+{
+    <NewsletterTile
+        Year="@Year"
+        Month="@Month"
+        PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
+    />
+}
+else
+{
+    <NewsletterBase
+        Year="@Year"
+        Month="@Month"
+        PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
+        Events="_events"
+        NewsItems="_newsItems"
+    />
+}
+
+@code {
+    @* Do not edit Year, Month, or PhotoContestWinnerUrl.
+    These are automatically populated by Pages/Newsletter using the name and position in the directory.
+    
+    Year is determined by the folder name, and Month is determined by the file name.
+    PhotoContestWinnerUrl is similarly determined by the folder name it is in and its filename.
+
+    PreviewOnly is set to true when we want to create the component for its data but not render the full thing.
+    This is useful for creating the all of the necessary data for the newsletter but rendering just a preview version for thumbnail generation.
+    *@
+    [Parameter] public bool PreviewOnly { get; set; } = false; // Do not edit
+    [Parameter] required public int Year { get; set; } // Do not edit
+    [Parameter] required public string Month { get; set; } // Do not edit
+    [Parameter] public string? PhotoContestWinnerUrl { get; set; } // Do not edit
+
+    private List<Event> _events { get; set; } = new() {
+        new Event
+        {
+            Title = "Caffeine and Octane",
+            AddressLine1 = "400 Ernest W Barrett Pkwy NW",
+            AddressLine2 = "Kennesaw, GA 30144",
+            LocationName = "Town Center at Cobb",
+            LocationURL = "https://maps.app.goo.gl/TzfwsBvUf1KaFQiu8",
+            StartDate = new DateTime(2025, 4, 6, 7, 0, 0),
+            EndDate = new DateTime(2025, 4, 6, 12, 0, 0),
+            Cost = "Free",
+            MainImageUrl = "images/caffeine and octane.jpg",
+            Description = @"
+                The usual C&O meetup. Meet us at the spectator lot at around 7:00 AM to park together.
+                Otherwise, come whenever, park wherever, and enjoy the show as a spectator.
+            "
+        },
+        new Event
+        {
+            Title = "Some Other OTHER Event",
+            AddressLine1 = "123 Main Street",
+            AddressLine2 = "Springfield, ST 12345",
+            LocationName = "Springfield Park",
+            LocationURL = "https://maps.app.goo.gl/TzfwsBvUf1KaFQiu8",
+            StartDate = new DateTime(2025, 4, 20, 7, 0, 0),
+            Cost = "$25",
+            MainImageUrl = "images/Club C&O Line.JPG",
+            FacebookEventUrl = "https://www.facebook.com/events/1234567890/",
+            OtherLinks = new Dictionary<string, string>
+            {
+                {"LinkText1", "https://example.com/event-website"},
+                {"LinkText2", "https://example.com/event-website/anotherOne"}
+            },
+            Description = @"
+                This is a test event. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            "
+        }
+    };
+
+    private List<string> _newsItems { get; set; } = new() {
+        @"
+            We are excited to announce that our club has been featured in the local news!
+            Check out the article <a href='https://example.com/news-article'>here</a>.
+        ",
+        @"
+            April fools! We are not actually in the news. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        "
+    };
+}
