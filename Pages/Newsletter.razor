@@ -3,7 +3,7 @@
 @using System.Reflection
 @using Microsoft.AspNetCore.Components
 
-<div class="newsletter-container">
+<div class="newsletter-container @(PreviewOnly ? "preview" : "")">
     @if (_newsletterComponentType != null)
     {
         <PageTitle>@_monthFormatted @Year Newsletter</PageTitle>

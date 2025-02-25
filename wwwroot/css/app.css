@@ -4,11 +4,15 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+body, #app {
+    height: 100dvh;
+}
+
 h1:focus {
     outline: none;
 }
 
-a, .btn-link {
+a {
     color: var(--links);
 }
 

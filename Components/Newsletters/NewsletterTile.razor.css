@@ -1,17 +1,27 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    gap: 20px;
+    position: relative;
 
+    width: fit-content;
+    height: fit-content;
 
-    padding: 20px;
-    border: 3px solid var(--accent);
+    padding: 10px;
+    border: 3px solid transparent;
     border-radius: 5px;
     margin: 10px;
 
     background-color: var(--secondary);
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.container:hover {
+    border-color: var(--accent);
+    scale: 1.05;
+}
+
+.container:hover .title {
+    color: var(--accent);
 }
 
 .preview-image {
@@ -19,12 +29,22 @@
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
+
+    transition: .3s;
 }
 
 .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
     white-space: nowrap;
-    color: black;
-    font-size: x-large;
+    color: rgba(255, 255, 255, 0.749);
+    font-size: 50px;
     font-weight: 600;
-    flex: 1;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+
+    transition: .3s;
 }

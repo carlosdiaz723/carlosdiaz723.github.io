@@ -9,3 +9,8 @@
     align-items: center;
 }
 
+.newsletter-container.preview {
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+}
