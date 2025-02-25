@@ -32,7 +32,7 @@
 .winning-photo-frame {
     width: 70vw;
     padding: 3vw;
-    background-color: brown;
+    background-color: var(--secondary);
 }
 
 .winning-photo {
