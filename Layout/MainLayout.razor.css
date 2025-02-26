@@ -14,5 +14,9 @@ main {
 }
 
 .topbar {
-    background-color: var(--accent);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: var(--ebony);
+    padding: 20px;
 }
