@@ -1,20 +1,24 @@
 body {
-    /* Light Mode Palette */
 
-    /* --primary: #A7C7E7;
-    --secondary: #1D1D1D;
-    --accent: #FF3C3C;
-    --background: #F5F5F5;
-    --text: #222222;
-    --links: #4e93d8; */
-    
-    /* Dark Mode Palette */
+    --performance: #A7C7E7;
+    --bright-red: #FF3C3C;
+    --dark-red: #5a140b;
 
-    --primary: #1C1C1E;
-    --secondary: #A7C7E7;
-    --accent: #FF3C3C;
-    --background: #1f1e1e;
-    --text: #EAEAEA;
-    --links: #73a0cd;
+    --ebony: #1c1e2b;
+    --nile: #1c2a46;
+    --juan: #4f708c;
+    --steel: #7ba4c6;
+    --glacier: #c5e0e7;
+    --royal: #3755eb;
+    --cornflower: #4d83ef;
+    --malibu: #76bbf4;
+    --sail: #a8d5fa;
+    --foam: #d8f6fd;
+
+    --text: var(--foam);
+    --background: var(--nile);
+    --primary: var(--royal);
+    --secondary: var(--performance);
+    --accent: var(--dark-red);
 
 }
