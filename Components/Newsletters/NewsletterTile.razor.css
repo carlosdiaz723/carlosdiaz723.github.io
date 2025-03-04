@@ -21,7 +21,7 @@
 }
 
 .container:hover .title {
-    color: var(--accent);
+    color: var(--secondary);
 }
 
 .preview-image {
