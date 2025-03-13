@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "NClubGA",
   "resources": {
-    "hash": "sha256-BMAitUlhm4u/A+OF56vpBipZ9wRIxW5EkEDubfqPlDo=",
+    "hash": "sha256-c9UO1xIiqhI4hiSvHZVQYN+s9XqErxahdIZv+hiK9yc=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Components.i5erxjdxpf.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.pq1s9tpl5w.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -17,7 +17,7 @@
       "Microsoft.Extensions.Primitives.2jafe63jbt.wasm": "Microsoft.Extensions.Primitives.wasm",
       "Microsoft.JSInterop.iknej2zdh8.wasm": "Microsoft.JSInterop.wasm",
       "Microsoft.JSInterop.WebAssembly.8eb000j8w7.wasm": "Microsoft.JSInterop.WebAssembly.wasm",
-      "NClubGA.zkbdk796l0.wasm": "NClubGA.wasm",
+      "NClubGA.uoyp60d4vq.wasm": "NClubGA.wasm",
       "System.Collections.Concurrent.fzjfrdn2ak.wasm": "System.Collections.Concurrent.wasm",
       "System.Collections.Immutable.2sznr7iy82.wasm": "System.Collections.Immutable.wasm",
       "System.Collections.q5plg02tii.wasm": "System.Collections.wasm",
@@ -76,7 +76,7 @@
       "Microsoft.Extensions.Primitives.2jafe63jbt.wasm": "sha256-DnlMLnoUShENHHG/1JwJlFyv8wwJ0wNnr/fEV/sR2dI=",
       "Microsoft.JSInterop.iknej2zdh8.wasm": "sha256-LuYfR4a5fwfclUwXPnTjZGpINIjF23AhCZmTFWP2xbQ=",
       "Microsoft.JSInterop.WebAssembly.8eb000j8w7.wasm": "sha256-sGms9Oai1ztzgfMsqBvmeKwa5ZyGWr/AEXr6thw0lso=",
-      "NClubGA.zkbdk796l0.wasm": "sha256-HWTZRHQXm1Xro0H//hEu9HWgsbKuxLern7befhlPdp0=",
+      "NClubGA.uoyp60d4vq.wasm": "sha256-Iu4vfNjV4zGz2abJcWBR8BAnDPBXNCl7AnpICPD+bQY=",
       "System.Collections.Concurrent.fzjfrdn2ak.wasm": "sha256-61G6RdWky6wSKMoiBGmJfoebCUZviZ5ID5YVq4HzR40=",
       "System.Collections.Immutable.2sznr7iy82.wasm": "sha256-HtRM8z6SWCHMrKQrNZIALzy2FMivErM+NlMU8wP0mA4=",
       "System.Collections.q5plg02tii.wasm": "sha256-Yh3BdD9E7arwOBTjFLTGCtPXcOe04whDNmdl0hfx8HE=",
