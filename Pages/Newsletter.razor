@@ -10,10 +10,6 @@
         <PageTitle>@_monthFormatted @Year Newsletter</PageTitle>
         <DynamicComponent Type="_newsletterComponentType" Parameters="_parameters"/>
     }
-    else if (_legacyNewsletter)
-    {
-        <a href=@($"legacy-newsletters/{Year}/{_monthFormatted}.pdf") download>Download Newsletter</a>
-    }
     else
     {
         <p>
@@ -26,8 +22,8 @@
     [Parameter] public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
     [Parameter] public bool PreviewOnly { get; set; } = false;
+    [Inject] private NavigationManager Navigation { get; set; }
     private string _monthFormatted;
-
     private bool _legacyNewsletter = false;
 
     private Type? _newsletterComponentType;
@@ -37,8 +33,10 @@
         _monthFormatted = char.ToUpper(Month[0]) + Month.Substring(1).ToLower();
         _legacyNewsletter = DetermineIfLegacy(Year, _monthFormatted);
         
-        if (_legacyNewsletter) return;
-        
+        if (_legacyNewsletter)
+        {
+            Navigation.NavigateTo($"legacy-newsletters/{Year}/{_monthFormatted}.pdf", forceLoad: true);
+        }
 
         string _typeName = $"NClubGA.Components.Newsletters._{Year}.{_monthFormatted}";
         _newsletterComponentType = Assembly.GetExecutingAssembly().GetType(_typeName);
@@ -53,5 +51,4 @@
             };
         }
     }
-
 }
