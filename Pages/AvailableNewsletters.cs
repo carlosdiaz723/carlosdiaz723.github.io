@@ -29,12 +29,12 @@ namespace Newsletters
 
         public static bool DetermineIfLegacy(int year, string month)
         {
-            /* return true if date is anywhere between August 2024 and April 2025 */
+            /* return true if date is anywhere between August 2024 and March 2025 */
             if (year == 2024 && _months[month] >= 8)
             {
                 return true;
             }
-            else if (year == 2025 && _months[month] <= 4)
+            else if (year == 2025 && _months[month] <= 3)
             {
                 return true;
             }

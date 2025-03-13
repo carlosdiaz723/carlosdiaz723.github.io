@@ -2,9 +2,9 @@
 
 @using NClubGA.Components
 @using System.Reflection
+@using static Newsletters.Util
 
 <PageTitle>Newsletters</PageTitle>
-
 
 <div class="list">
     @foreach (var package in Packages)
@@ -22,47 +22,25 @@
     List<NewsletterPackage> Packages = new List<NewsletterPackage>();
     protected override void OnInitialized()
     {
-        foreach (var year in years)
+        foreach (var year in Years)
         {
             var path = $"{NewsletterBaseNamespace}._{year}";
-            foreach (var month in months)
+            foreach (var monthKVP in Months)
             {
-                var typeName = $"{path}.{month}";
+                var typeName = $"{path}.{monthKVP.Key}";
                 Type? type = Assembly.GetExecutingAssembly().GetType(typeName);
                 if (type is not null)
                 {
                     var package = new NewsletterPackage
                     {
                         Year = year,
-                        Month = month
+                        Month = monthKVP.Key
                     };
                     Packages.Add(package);
                 }
             }
         }
     }
-
-    static private string NewsletterBaseNamespace = "NClubGA.Components.Newsletters";
-
-    static private int[] years = new int[] {
-        2025
-    };
-
-    static private string[] months = new string[] {
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December" 
-    };
-
     public class NewsletterPackage
     {
         required public int Year { get; set; }
