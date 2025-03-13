@@ -1,0 +1,40 @@
+name: Deploy Blazor to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # Adjust this to your default branch
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.103'  # Adjust to your version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build and publish
+        run: dotnet publish -c Release -o release --nologo
+
+      - name: Prepare Blazor output
+        run: |
+          mkdir -p deploy
+          cp -r release/wwwroot/* deploy
+          echo "<!DOCTYPE html><html><head><meta http-equiv='refresh' content='0; url=/index.html'></head></html>" > deploy/404.html
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: deploy
