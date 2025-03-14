@@ -2,26 +2,31 @@
 
 @using System.Reflection
 @using Microsoft.AspNetCore.Components
-@using static Newsletters.Util
+@using static NClubGA.Models.AvailableNewsletters.Util
 
-<div class="newsletter-container @(PreviewOnly ? "preview" : "")">
-    @if (_newsletterComponentType != null)
-    {
+@if (_newsletterComponentType != null)
+{
+    <div class="newsletter-container">
         <PageTitle>@_monthFormatted @Year Newsletter</PageTitle>
         <DynamicComponent Type="_newsletterComponentType" Parameters="_parameters"/>
-    }
-    else
-    {
-        <p>
-            Newsletter not found for @_monthFormatted @Year.
-        </p>
-    }
-</div>
+    </div>
+}
+else if (_legacyNewsletter)
+{
+    <p>
+        The newsletter for @_monthFormatted @Year is available as a PDF. Redirecting...
+    </p>
+}
+else    
+{
+    <p>
+        Newsletter not found for @_monthFormatted @Year.
+    </p>
+}
 
 @code {
     [Parameter] public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
-    [Parameter] public bool PreviewOnly { get; set; } = false;
     [Inject] private NavigationManager Navigation { get; set; }
     private string _monthFormatted;
     private bool _legacyNewsletter = false;
@@ -36,6 +41,7 @@
         if (_legacyNewsletter)
         {
             Navigation.NavigateTo($"legacy-newsletters/{Year}/{_monthFormatted}.pdf", forceLoad: true);
+            return;
         }
 
         string _typeName = $"NClubGA.Components.Newsletters._{Year}.{_monthFormatted}";
@@ -46,8 +52,7 @@
             {
                 { "Year", Year },
                 { "Month", _monthFormatted },
-                { "PhotoContestWinnerUrl", $"images/PhotoContestWinners/{Year}/{_monthFormatted}.jpg" },
-                { "PreviewOnly", PreviewOnly }
+                { "PhotoContestWinnerUrl", $"images/PhotoContestWinners/{Year}/{_monthFormatted}.jpg" }
             };
         }
     }

@@ -1,9 +1,10 @@
+@using static NClubGA.Models.AvailableNewsletters.Util
 @inject NavigationManager NavigationManager
 
 <div class="container" @onclick="NavigateToNewsletter">
     <img
         class="preview-image"
-        src="@(PhotoContestWinnerUrl is not null ? PhotoContestWinnerUrl : "/images/velos petit.jpg")"
+        src="@(_photoContestWinnerUrl is not null ? _photoContestWinnerUrl : "/images/velos petit.jpg")"
     />
     <div class="title">
         @Month.ToUpper()
@@ -13,14 +14,19 @@
 @code {
     [Parameter] required public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
-    [Parameter] public string? PhotoContestWinnerUrl { get; set; }
-
     [Parameter] public string? Url { get; set; } 
-    
+    private string? _photoContestWinnerUrl;
+
     private void NavigateToNewsletter()
     {
         var go = Url ?? $"/newsletters/{Year}/{Month}";
         var forced = Url is not null;
         NavigationManager.NavigateTo(go, forceLoad: forced);
+    }
+
+    protected override void OnInitialized()
+    {
+        if (DetermineIfLegacy(Year, Month)) return;
+        _photoContestWinnerUrl = $"images/PhotoContestWinners/{Year}/{Month}.jpg";
     }
 }

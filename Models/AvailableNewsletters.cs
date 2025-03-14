@@ -1,4 +1,4 @@
-namespace Newsletters
+namespace NClubGA.Models.AvailableNewsletters
 {
     /* Static data holding class */
     public static class Util

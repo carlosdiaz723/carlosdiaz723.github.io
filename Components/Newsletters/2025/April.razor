@@ -1,21 +1,10 @@
-@if (PreviewOnly)
-{
-    <NewsletterTile
-        Year="@Year"
-        Month="@Month"
-        PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
-    />
-}
-else
-{
-    <NewsletterBase
-        Year="@Year"
-        Month="@Month"
-        PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
-        Events="_events"
-        NewsItems="_newsItems"
-    />
-}
+<NewsletterBase
+    Year="@Year"
+    Month="@Month"
+    PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
+    Events="_events"
+    NewsItems="_newsItems"
+/>
 
 @code {
     @* Do not edit Year, Month, or PhotoContestWinnerUrl.
@@ -23,11 +12,7 @@ else
     
     Year is determined by the folder name, and Month is determined by the file name.
     PhotoContestWinnerUrl is similarly determined by the folder name it is in and its filename.
-
-    PreviewOnly is set to true when we want to create the component for its data but not render the full thing.
-    This is useful for creating the all of the necessary data for the newsletter but rendering just a preview version for thumbnail generation.
     *@
-    [Parameter] public bool PreviewOnly { get; set; } = false; // Do not edit
     [Parameter] required public int Year { get; set; } // Do not edit
     [Parameter] required public string Month { get; set; } // Do not edit
     [Parameter] public string? PhotoContestWinnerUrl { get; set; } // Do not edit

@@ -2,7 +2,7 @@
 
 @using NClubGA.Components.Newsletters
 @using System.Reflection
-@using static Newsletters.Util
+@using static NClubGA.Models.AvailableNewsletters.Util
 
 <PageTitle>Newsletters</PageTitle>
 
@@ -16,10 +16,9 @@
             {
                 if (package.Year == year)
                 {
-                    <Newsletter
+                    <NewsletterTile
                         Year="@package.Year"
                         Month="@package.Month"
-                        PreviewOnly="true"
                     />
                 }
             }
