@@ -1,10 +1,10 @@
-@using static NClubGA.Models.AvailableNewsletters.Util
+@using static NClubGA.Models.NewslettersUtil
 @inject NavigationManager NavigationManager
 
 <div class="container" @onclick="NavigateToNewsletter">
     <img
         class="preview-image"
-        src="@(_photoContestWinnerUrl is not null ? _photoContestWinnerUrl : "/images/velos petit.jpg")"
+        src="@(GetWinningPhotoPath(Year, Month) ?? "/images/velos petit.jpg")"
     />
     <div class="title">
         @Month.ToUpper()
@@ -22,11 +22,5 @@
         var go = Url ?? $"/newsletters/{Year}/{Month}";
         var forced = Url is not null;
         NavigationManager.NavigateTo(go, forceLoad: forced);
-    }
-
-    protected override void OnInitialized()
-    {
-        if (DetermineIfLegacy(Year, Month)) return;
-        _photoContestWinnerUrl = $"images/PhotoContestWinners/{Year}/{Month}.jpg";
     }
 }

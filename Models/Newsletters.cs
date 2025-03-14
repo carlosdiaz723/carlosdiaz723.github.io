@@ -1,7 +1,9 @@
-namespace NClubGA.Models.AvailableNewsletters
+using System.Net.NetworkInformation;
+
+namespace NClubGA.Models
 {
     /* Static data holding class */
-    public static class Util
+    public static class NewslettersUtil
     {
         public static int[] Years { get { return _years; } }
         public static Dictionary<string, int> Months { get { return _months; } }
@@ -31,17 +33,19 @@ namespace NClubGA.Models.AvailableNewsletters
         {
             /* return true if date is anywhere between August 2024 and March 2025 */
             if (year == 2024 && _months[month] >= 8)
-            {
                 return true;
-            }
             else if (year == 2025 && _months[month] <= 3)
-            {
                 return true;
-            }
             else
-            {
                 return false;
-            }
+        }
+
+        public static string GetWinningPhotoPath(int year, string month)
+        {
+            if (DetermineIfLegacy(year, month))
+                return null;
+            else
+                return $"images/PhotoContestWinners/{year}/{month}.jpg";
         }
     }
 }

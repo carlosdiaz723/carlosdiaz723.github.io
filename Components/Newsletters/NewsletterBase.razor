@@ -1,3 +1,5 @@
+@using static NClubGA.Models.NewslettersUtil
+
 <div class="newsletter">
     <div class="logo-and-date">
         <img class="banner-logo" src="images/MainBannerLogo.png"/>
@@ -15,17 +17,14 @@
             <EventRenderer Event="@eventObj"/>
         }
     }
-    @if (!string.IsNullOrWhiteSpace(_photoContestWinnerUrl))
-    {
-        <div class="section-title">
-            Photo Contest Winner
-            <br />
-            @PhotoContestWinner
-        </div>
-        <div class="winning-photo-frame">
-            <img class="winning-photo" src="@_photoContestWinnerUrl"/>
-        </div>
-    }
+    <div class="section-title">
+        Photo Contest Winner
+        <br />
+        @PhotoContestWinner
+    </div>
+    <div class="winning-photo-frame">
+        <img class="winning-photo" src="@GetWinningPhotoPath(Year, Month)"/>
+    </div>
     @if (NewsItems is not null && NewsItems.Count > 0)
     {
         <div class="section-title">
@@ -45,12 +44,5 @@
     [Parameter] required public string Month { get; set; }
     [Parameter] public List<Event>? Events { get; set; }
     [Parameter] public List<string>? NewsItems { get; set; }
-    
     [Parameter] public string? PhotoContestWinner { get; set; }
-    private string? _photoContestWinnerUrl;
-
-    protected override void OnParametersSet()
-    {
-        _photoContestWinnerUrl = $"images/PhotoContestWinners/{Year}/{Month}.jpg";
-    }
 }
