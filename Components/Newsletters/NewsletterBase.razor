@@ -15,13 +15,15 @@
             <EventRenderer Event="@eventObj"/>
         }
     }
-    @if (!string.IsNullOrWhiteSpace(PhotoContestWinnerUrl))
+    @if (!string.IsNullOrWhiteSpace(_photoContestWinnerUrl))
     {
         <div class="section-title">
             Photo Contest Winner
+            <br />
+            @PhotoContestWinner
         </div>
         <div class="winning-photo-frame">
-            <img class="winning-photo" src="@PhotoContestWinnerUrl"/>
+            <img class="winning-photo" src="@_photoContestWinnerUrl"/>
         </div>
     }
     @if (NewsItems is not null && NewsItems.Count > 0)
@@ -41,7 +43,14 @@
 @code {
     [Parameter] required public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
-    [Parameter] public string? PhotoContestWinnerUrl { get; set; }
     [Parameter] public List<Event>? Events { get; set; }
     [Parameter] public List<string>? NewsItems { get; set; }
+    
+    [Parameter] public string? PhotoContestWinner { get; set; }
+    private string? _photoContestWinnerUrl;
+
+    protected override void OnParametersSet()
+    {
+        _photoContestWinnerUrl = $"images/PhotoContestWinners/{Year}/{Month}.jpg";
+    }
 }

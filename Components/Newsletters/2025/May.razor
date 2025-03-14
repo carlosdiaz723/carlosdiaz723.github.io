@@ -1,22 +1,28 @@
+@* DO NOT EDIT *@
 <NewsletterBase
     Year="@Year"
     Month="@Month"
-    PhotoContestWinnerUrl="@PhotoContestWinnerUrl"
+    PhotoContestWinner="@_photoContestWinner"
     Events="_events"
     NewsItems="_newsItems"
 />
+@* DO NOT EDIT *@
+
 
 @code {
-    @* Do not edit Year, Month, or PhotoContestWinnerUrl.
+    @* Do not edit Year or Month.
     These are automatically populated by Pages/Newsletter using the name and position in the directory.
-    
     Year is determined by the folder name, and Month is determined by the file name.
-    PhotoContestWinnerUrl is similarly determined by the folder name it is in and its filename.
     *@
     [Parameter] required public int Year { get; set; } // Do not edit
     [Parameter] required public string Month { get; set; } // Do not edit
-    [Parameter] public string? PhotoContestWinnerUrl { get; set; } // Do not edit
 
+
+
+
+    @* Edit values below *@
+
+    private string? _photoContestWinner = "Jane Doe";
     private List<Event> _events { get; set; } = new() {
         new Event
         {
