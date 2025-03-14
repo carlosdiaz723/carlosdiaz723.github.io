@@ -4,27 +4,27 @@ namespace Newsletters
     public static class Util
     {
         public static int[] Years { get { return _years; } }
-        public static Dictionary<string, uint> Months { get { return _months; } }
+        public static Dictionary<string, int> Months { get { return _months; } }
 
         public static string NewsletterBaseNamespace { get {return _newsletterBaseNamespace; } }
         
         private static readonly string _newsletterBaseNamespace = "NClubGA.Components.Newsletters";
-        private static readonly int[] _years = { 2025 };
+        private static readonly int[] _years = [2025, 2024];
 
-        private static readonly Dictionary<string, uint> _months = new()
+        private static readonly Dictionary<string, int> _months = new()
         {
-            { "January", 1 },
-            { "February", 2 },
-            { "March", 3 },
-            { "April", 4 },
-            { "May", 5 },
-            { "June", 6 },
-            { "July", 7 },
-            { "August", 8 },
-            { "September", 9 },
-            { "October", 10 },
+            { "December", 12 },
             { "November", 11 },
-            { "December", 12 }
+            { "October", 10 },
+            { "September", 9 },
+            { "August", 8 },
+            { "July", 7 },
+            { "June", 6 },
+            { "May", 5 },
+            { "April", 4 },
+            { "March", 3 },
+            { "February", 2 },
+            { "January", 1 }
         };
 
         public static bool DetermineIfLegacy(int year, string month)

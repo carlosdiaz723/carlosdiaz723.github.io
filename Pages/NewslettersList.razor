@@ -1,25 +1,57 @@
 @page "/newsletters"
 
-@using NClubGA.Components
+@using NClubGA.Components.Newsletters
 @using System.Reflection
 @using static Newsletters.Util
 
 <PageTitle>Newsletters</PageTitle>
 
-<div class="list">
-    @foreach (var package in Packages)
-    {
-        <Newsletter
-            Year="@package.Year"
-            Month="@package.Month"
-            PreviewOnly="true"
-        />
-    }
+<div>Newsletters</div>
+<div class="newsletters">
+    <div class="list">
+        @foreach (var year in _years)
+        {
+            <div>@year</div>
+            @foreach (var package in _newsletters)
+            {
+                if (package.Year == year)
+                {
+                    <Newsletter
+                        Year="@package.Year"
+                        Month="@package.Month"
+                        PreviewOnly="true"
+                    />
+                }
+            }
+        }
+    </div>
+    <div>Legacy Newsletters</div>
+    <div>These newsletters are PDF's from before this site existed.</div>
+    <div class="legacy-list">
+        @foreach (var year in _legacyYears)
+        {
+            <div>@year</div>
+            @foreach (var package in _legacyNewsletters)
+            {
+                if (package.Year == year)
+                {
+                    <NewsletterTile
+                        Year="@package.Year"
+                        Month="@package.Month"
+                        Url="@($"/legacy-newsletters/{package.Year}/{package.Month}.pdf")"
+                    />
+                }
+            }
+        }
+    </div>
 </div>
 
-
 @code {
-    List<NewsletterPackage> Packages = new List<NewsletterPackage>();
+    private List<NewsletterPackage> _newsletters = new();
+    private List<NewsletterPackage> _legacyNewsletters = new();
+
+    private HashSet<int> _years = new();
+    private HashSet<int> _legacyYears = new();
     protected override void OnInitialized()
     {
         foreach (var year in Years)
@@ -36,7 +68,18 @@
                         Year = year,
                         Month = monthKVP.Key
                     };
-                    Packages.Add(package);
+                    _years.Add(year);
+                    _newsletters.Add(package);
+                }
+                else if (DetermineIfLegacy(year, monthKVP.Key))
+                {
+                    var package = new NewsletterPackage
+                    {
+                        Year = year,
+                        Month = monthKVP.Key
+                    };
+                    _legacyYears.Add(year);
+                    _legacyNewsletters.Add(package);
                 }
             }
         }

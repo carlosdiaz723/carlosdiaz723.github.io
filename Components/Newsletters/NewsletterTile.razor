@@ -3,7 +3,7 @@
 <div class="container" @onclick="NavigateToNewsletter">
     <img
         class="preview-image"
-        src="@PhotoContestWinnerUrl"
+        src="@(PhotoContestWinnerUrl is not null ? PhotoContestWinnerUrl : "/images/velos petit.jpg")"
     />
     <div class="title">
         @Month.ToUpper()
@@ -13,10 +13,14 @@
 @code {
     [Parameter] required public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
-    [Parameter] required public string PhotoContestWinnerUrl { get; set; }
+    [Parameter] public string? PhotoContestWinnerUrl { get; set; }
+
+    [Parameter] public string? Url { get; set; } 
     
     private void NavigateToNewsletter()
     {
-        NavigationManager.NavigateTo($"/newsletters/{Year}/{Month}");
+        var go = Url ?? $"/newsletters/{Year}/{Month}";
+        var forced = Url is not null;
+        NavigationManager.NavigateTo(go, forceLoad: forced);
     }
 }
