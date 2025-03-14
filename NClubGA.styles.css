@@ -139,8 +139,8 @@
 }
 
 .preview-image[b-rx8vk4pmrg] {
-    width: 200px;
-    height: 200px;
+    max-width: 300px;
+    max-height: 250px;
     object-fit: cover;
     border-radius: 5px;
 
@@ -203,8 +203,16 @@ main[b-xbm53n8yzm] {
     padding: 0;
 }
 /* /Pages/NewslettersList.razor.rz.scp.css */
-.list[b-yxh2w8ot2v] {
+.newsletters[b-yxh2w8ot2v] {
     display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.list[b-yxh2w8ot2v],
+.legacy-list[b-yxh2w8ot2v] {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     gap: 30px;
