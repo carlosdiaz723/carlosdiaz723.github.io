@@ -2,7 +2,8 @@
 
 @using NClubGA.Components.Newsletters
 @using System.Reflection
-@using static NClubGA.Models.NewslettersUtil
+@using NClubGA.Models.Newsletters
+@using static NClubGA.Models.Newsletters.Util
 
 <PageTitle>Newsletters</PageTitle>
 
@@ -83,9 +84,9 @@
             }
         }
     }
-    public class NewsletterPackage
+    public record NewsletterPackage
     {
-        required public int Year { get; set; }
-        required public string Month { get; set; }
+        required public int Year;
+        required public string Month;
     }
 }

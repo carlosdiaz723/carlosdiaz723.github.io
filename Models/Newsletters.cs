@@ -1,15 +1,14 @@
-using System.Net.NetworkInformation;
 
-namespace NClubGA.Models
+namespace NClubGA.Models.Newsletters
 {
-    /* Static data holding class */
-    public static class NewslettersUtil
+
+    public static class Util
     {
         public static int[] Years { get { return _years; } }
         public static Dictionary<string, int> Months { get { return _months; } }
 
         public static string NewsletterBaseNamespace { get {return _newsletterBaseNamespace; } }
-        
+    
         private static readonly string _newsletterBaseNamespace = "NClubGA.Components.Newsletters";
         private static readonly int[] _years = [2025, 2024];
 
@@ -40,12 +39,36 @@ namespace NClubGA.Models
                 return false;
         }
 
-        public static string GetWinningPhotoPath(int year, string month)
+        public static string? GetWinningPhotoPath(int year, string month)
         {
             if (DetermineIfLegacy(year, month))
                 return null;
             else
                 return $"images/PhotoContestWinners/{year}/{month}.jpg";
         }
+    }
+
+    public class Event {
+        required public string Title { get; set; }
+        required public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        required public string LocationName { get; set; }
+        public string? LocationURL { get; set; }
+        required public string AddressLine1 { get; set; }
+        required public string AddressLine2 { get; set; }
+        required public string Cost { get; set; }
+        public string? MainImageUrl { get; set; }
+        public string? Description { get; set; }
+        public string? FacebookEventUrl { get; set; }
+        public Dictionary<string, string>? OtherLinks { get; set; }
+    }
+
+    public class Newsletter
+    {
+        required public int Year { get; set; }
+        required public string Month { get; set; }
+        public List<Event>? Events { get; set; }
+        public List<string>? NewsItems { get; set; }
+        public string? PhotoContestWinner { get; set; }
     }
 }

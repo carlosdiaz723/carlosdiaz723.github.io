@@ -1,0 +1,45 @@
+@using NClubGA.Models.Newsletters
+@using static NClubGA.Models.Newsletters.Util
+
+<div class="newsletter">
+    <div class="logo-and-date">
+        <img class="banner-logo" src="images/MainBannerLogo.png"/>
+        <div class="date">
+            @Newsletter.Month @Newsletter.Year
+        </div>
+    </div>
+    @if (Newsletter.Events is not null && Newsletter.Events.Count > 0)
+    {
+        <div class="section-title">
+            Events
+        </div>
+        @foreach (Event eventObj in Newsletter.Events)
+        {
+            <EventView Event="@eventObj"/>
+        }
+    }
+    <div class="section-title">
+        Photo Contest Winner
+        <br />
+        @Newsletter.PhotoContestWinner
+    </div>
+    <div class="winning-photo-frame">
+        <img class="winning-photo" src="@GetWinningPhotoPath(@Newsletter.Year, @Newsletter.Month)"/>
+    </div>
+    @if (Newsletter.NewsItems is not null && Newsletter.NewsItems.Count > 0)
+    {
+        <div class="section-title">
+            News
+        </div>
+        @foreach (string newsItem in Newsletter.NewsItems)
+        {
+            <div class="news-item" @key="newsItem">
+                @((MarkupString)newsItem)
+            </div>
+        }
+    }
+</div>
+
+@code {
+    [Parameter] required public Newsletter Newsletter { get; set; }
+}

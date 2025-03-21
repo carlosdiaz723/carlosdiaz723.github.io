@@ -1,10 +1,15 @@
+@using NClubGA.Models.Newsletters
+
 @* DO NOT EDIT *@
-<NewsletterBase
-    Year="@Year"
-    Month="@Month"
-    PhotoContestWinner="@_photoContestWinner"
-    Events="_events"
-    NewsItems="_newsItems"
+<NewsletterView
+    Newsletter="new Newsletter
+    {
+        Year = Year,
+        Month = Month,
+        PhotoContestWinner = _photoContestWinner,
+        Events = _events,
+        NewsItems = _newsItems
+    }"
 />
 @* DO NOT EDIT *@
 
