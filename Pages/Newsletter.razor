@@ -28,8 +28,8 @@ else
 @code {
     [Parameter] public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
-    [Inject] private NavigationManager Navigation { get; set; }
-    private string _monthFormatted;
+    [Inject] private NavigationManager Navigation { get; set; } = default!;
+    private string? _monthFormatted;
     private bool _legacyNewsletter = false;
 
     private Type? _newsletterComponentType;

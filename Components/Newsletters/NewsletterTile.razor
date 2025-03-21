@@ -16,9 +16,7 @@
 @code {
     [Parameter] required public int Year { get; set; }
     [Parameter] required public string Month { get; set; }
-    [Parameter] public string? Url { get; set; } 
-    private string? _photoContestWinnerUrl;
-
+    [Parameter] public string? Url { get; set; }
     private void NavigateToNewsletter()
     {
         var go = Url ?? $"/newsletters/{Year}/{Month}";
